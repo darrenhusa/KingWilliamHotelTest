@@ -63,9 +63,7 @@ namespace KingWilliamHotelTest.Migrations
 
             modelBuilder.Entity("KingWilliamHotelTest.Models.Room", b =>
                 {
-                    b.Property<int>("RoomId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<int>("RoomId");
 
                     b.Property<string>("Category");
 

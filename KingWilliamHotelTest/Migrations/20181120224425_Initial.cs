@@ -51,8 +51,7 @@ namespace KingWilliamHotelTest.Migrations
                 name: "Rooms",
                 columns: table => new
                 {
-                    RoomId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    RoomId = table.Column<int>(nullable: false),
                     Unavailable = table.Column<bool>(nullable: false),
                     NeedsCleaning = table.Column<bool>(nullable: false),
                     Category = table.Column<string>(nullable: true),
