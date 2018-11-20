@@ -17,5 +17,9 @@ namespace KingWilliamHotelTest.Models
         // FKs
         public int CustomerId { get; set; }
         public int RoomId { get; set; }
+
+        // Navigation properties
+        public ICollection<Room> Rooms { get; set; }
+        public ICollection<Customer> Customers { get; set; }
     }
 }

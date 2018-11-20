@@ -12,8 +12,10 @@ namespace KingWilliamHotelTest.Models
         public bool Unavailable { get; set; }
         public bool NeedsCleaning { get; set; }
 
-        // FKs
+        // FK
         public string Category { get; set; }
 
+        // Navigation properties
+        public ICollection<RoomDes> RoomDess { get; set; }
     }
 }
