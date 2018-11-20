@@ -12,7 +12,7 @@ namespace KingWilliamHotelTest.Models
         public int RoomNo { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public decimal Amount { get; set; }
+        public double Amount { get; set; }
 
         // FKs
         public int CustomerId { get; set; }
