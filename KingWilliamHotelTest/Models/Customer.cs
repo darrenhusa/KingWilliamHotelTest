@@ -1,0 +1,23 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace KingWilliamHotelTest.Models
+{
+    public class Customer
+    {
+        // Use CustomerId instead of CustomerNo so that EF Core works
+        public int CustomerId { get; set; }
+        public string LastName { get; set; }
+        public string FirstName { get; set; }
+        //public string MI { get; set; }
+        //public string Address { get; set; }
+        //public string City { get; set; }
+        //public string State { get; set; }
+        //public string Zip { get; set; }
+        //public string Phone { get; set; }
+        //public string CreditCardNumber { get; set; }
+        //public DateTime CardExpDate { get; set; }
+    }
+}
