@@ -3,14 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using KingWilliamHotelTest.Models;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace KingWilliamHotelTest.Models
 {
     public static class DbInitializer
     {
-        public static void Initialize(ApplicationDbContext context)
+        public static void Initialize(IApplicationBuilder app)
         {
-            context.Database.EnsureCreated();
+            ApplicationDbContext context = app.ApplicationServices.GetRequiredService<ApplicationDbContext>();
+
+            context.Database.Migrate();
+            //context.Database.EnsureCreated();
 
             // Look for any students.
             if (context.Customers.Any())

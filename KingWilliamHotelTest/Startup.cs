@@ -37,6 +37,9 @@ namespace KingWilliamHotelTest
             }
             app.UseMvc();
 
+            DbInitializer.Initialize(app);
+
         }
+
     }
 }
