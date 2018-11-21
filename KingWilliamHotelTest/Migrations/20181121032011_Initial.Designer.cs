@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KingWilliamHotelTest.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181120224425_Initial")]
+    [Migration("20181121032011_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -31,11 +31,7 @@ namespace KingWilliamHotelTest.Migrations
 
                     b.Property<string>("LastName");
 
-                    b.Property<int?>("ReservationId");
-
                     b.HasKey("CustomerId");
-
-                    b.HasIndex("ReservationId");
 
                     b.ToTable("Customers");
                 });
@@ -54,11 +50,13 @@ namespace KingWilliamHotelTest.Migrations
 
                     b.Property<int>("RoomId");
 
-                    b.Property<int>("RoomNo");
-
                     b.Property<DateTime>("StartDate");
 
                     b.HasKey("ReservationId");
+
+                    b.HasIndex("CustomerId");
+
+                    b.HasIndex("RoomId");
 
                     b.ToTable("Reservations");
                 });
@@ -71,13 +69,11 @@ namespace KingWilliamHotelTest.Migrations
 
                     b.Property<bool>("NeedsCleaning");
 
-                    b.Property<int?>("ReservationId");
-
                     b.Property<bool>("Unavailable");
 
                     b.HasKey("RoomId");
 
-                    b.HasIndex("ReservationId");
+                    b.HasIndex("Category");
 
                     b.ToTable("Rooms");
                 });
@@ -90,34 +86,29 @@ namespace KingWilliamHotelTest.Migrations
 
                     b.Property<double>("Rate");
 
-                    b.Property<int?>("RoomId");
-
                     b.HasKey("Category");
-
-                    b.HasIndex("RoomId");
 
                     b.ToTable("RoomDess");
                 });
 
-            modelBuilder.Entity("KingWilliamHotelTest.Models.Customer", b =>
+            modelBuilder.Entity("KingWilliamHotelTest.Models.Reservation", b =>
                 {
-                    b.HasOne("KingWilliamHotelTest.Models.Reservation")
-                        .WithMany("Customers")
-                        .HasForeignKey("ReservationId");
+                    b.HasOne("KingWilliamHotelTest.Models.Customer")
+                        .WithMany("Reservations")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("KingWilliamHotelTest.Models.Room")
+                        .WithMany("Reservations")
+                        .HasForeignKey("RoomId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("KingWilliamHotelTest.Models.Room", b =>
                 {
-                    b.HasOne("KingWilliamHotelTest.Models.Reservation")
+                    b.HasOne("KingWilliamHotelTest.Models.RoomDes", "RoomDes")
                         .WithMany("Rooms")
-                        .HasForeignKey("ReservationId");
-                });
-
-            modelBuilder.Entity("KingWilliamHotelTest.Models.RoomDes", b =>
-                {
-                    b.HasOne("KingWilliamHotelTest.Models.Room")
-                        .WithMany("RoomDess")
-                        .HasForeignKey("RoomId");
+                        .HasForeignKey("Category");
                 });
 #pragma warning restore 612, 618
         }

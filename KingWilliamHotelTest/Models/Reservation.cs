@@ -9,7 +9,7 @@ namespace KingWilliamHotelTest.Models
     {
         // Use ReservationId instead of ReservationNo so that EF Core works
         public int ReservationId { get; set; }
-        public int RoomNo { get; set; }
+        //public int RoomNo { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public double Amount { get; set; }
@@ -19,7 +19,7 @@ namespace KingWilliamHotelTest.Models
         public int RoomId { get; set; }
 
         // Navigation properties
-        public ICollection<Room> Rooms { get; set; }
-        public ICollection<Customer> Customers { get; set; }
+        //public ICollection<Room> Rooms { get; set; }
+        //public ICollection<Customer> Customers { get; set; }
     }
 }

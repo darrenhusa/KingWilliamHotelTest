@@ -5,8 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-    <Folder Include="Views\" />
+    <Folder Include="Views\Reservation\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 

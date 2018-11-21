@@ -18,6 +18,10 @@ namespace KingWilliamHotelTest.Models
         public string Category { get; set; }
 
         // Navigation properties
-        public ICollection<RoomDes> RoomDess { get; set; }
+        public ICollection<Reservation> Reservations { get; set; }
+        public RoomDes RoomDes { get; set; }
+
+        // Navigation properties
+        //public ICollection<RoomDes> RoomDess { get; set; }
     }
 }

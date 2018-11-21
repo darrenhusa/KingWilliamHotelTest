@@ -19,5 +19,7 @@ namespace KingWilliamHotelTest.Models
         //public string Phone { get; set; }
         //public string CreditCardNumber { get; set; }
         //public DateTime CardExpDate { get; set; }
+
+        public ICollection<Reservation> Reservations { get; set; }
     }
 }

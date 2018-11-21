@@ -15,5 +15,9 @@ namespace KingWilliamHotelTest.Models
         public string Category { get; set; }
         public string CategoryDesc { get; set; }
         public double Rate { get; set; }
+
+        // Navigation properties
+        public ICollection<Room> Rooms { get; set; }
+
     }
 }
