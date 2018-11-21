@@ -1,0 +1,32 @@
+﻿@model Reservation
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Reservation - Edit View</title>
+</head>
+<body>
+<h3>Reservation - Edit</h3>
+<form asp-action="Edit" method="post">
+    <div class="form-group">
+        <label>Customer ID</label><input asp-for="CustomerId" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Room Number</label><input asp-for="RoomId" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Start Date</label><input asp-for="StartDate" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>End Date</label><input asp-for="EndDate" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Amount</label><input asp-for="Amount" class="form-control" />
+    </div>
+    <div class="texst-center">
+        <input class="btn btn-primary" type="submit" value="Update Reservation" />
+    </div>
+</form>
+</body>
+</html>

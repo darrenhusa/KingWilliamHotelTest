@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Linq;
+using Microsoft.AspNetCore.Mvc;
 using KingWilliamHotelTest.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,5 +19,13 @@ namespace KingWilliamHotelTest.Controllers
         {
             return View(_repo.Reservations);
         }
+
+        // GET: /<controller>/Edit/id
+        public ViewResult Edit(int reservationId)
+        {
+            return View(_repo.Reservations
+                .FirstOrDefault(r => r.ReservationId == reservationId));
+        }
+
     }
 }

@@ -39,6 +39,10 @@ namespace KingWilliamHotelTest
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Reservation}/{action=Index}/{id?}");
+
+                routes.MapRoute(
+                    name: null,
+                    template: "{controller}/{action}/{id?}");
             });
 
             DbInitializer.Initialize(app);
