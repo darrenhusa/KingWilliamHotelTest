@@ -42,8 +42,7 @@ namespace KingWilliamHotelTest.Controllers
                 return View(reservation);
 
             }
-            return View(_repo.Reservations
-                .FirstOrDefault(r => r.ReservationId == reservationId));
+           
         }
 
 
