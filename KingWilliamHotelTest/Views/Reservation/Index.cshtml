@@ -1,0 +1,22 @@
+﻿@model IEnumerable<Reservation>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="Viewport" content="width=device-width" />
+    <title>King William Hotel</title>
+</head>
+<body>
+    @foreach (var r in Model)
+    {
+    <div>
+        <p>@r.ReservationId</p>
+        <p>@r.CustomerId</p>
+        <p>@r.RoomId</p>
+        <p>@r.StartDate</p>
+        <p>@r.EndDate</p>
+        <p>@r.Amount</p>
+    </div>
+     }   
+    </body>
+</html>

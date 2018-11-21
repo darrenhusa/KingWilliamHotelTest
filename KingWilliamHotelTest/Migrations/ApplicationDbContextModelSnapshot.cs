@@ -21,9 +21,7 @@ namespace KingWilliamHotelTest.Migrations
 
             modelBuilder.Entity("KingWilliamHotelTest.Models.Customer", b =>
                 {
-                    b.Property<int>("CustomerId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<int>("CustomerId");
 
                     b.Property<string>("FirstName");
 

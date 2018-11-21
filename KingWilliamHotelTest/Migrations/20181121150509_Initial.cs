@@ -12,8 +12,7 @@ namespace KingWilliamHotelTest.Migrations
                 name: "Customers",
                 columns: table => new
                 {
-                    CustomerId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    CustomerId = table.Column<int>(nullable: false),
                     LastName = table.Column<string>(nullable: true),
                     FirstName = table.Column<string>(nullable: true)
                 },

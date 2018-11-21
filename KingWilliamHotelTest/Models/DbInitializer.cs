@@ -26,10 +26,10 @@ namespace KingWilliamHotelTest.Models
 
             var customers = new Customer[]
             {
-                new Customer { FirstName = "Darren", LastName = "Henderson" },
-                new Customer { FirstName = "Richard", LastName = "Dawson" },
-                new Customer { FirstName = "George", LastName = "Foreman" },
-                new Customer { FirstName = "Jennifer", LastName = "Lopez" },
+                new Customer { CustomerId = 100, FirstName = "Darren", LastName = "Henderson" },
+                new Customer { CustomerId = 150, FirstName = "Richard", LastName = "Dawson" },
+                new Customer { CustomerId = 200, FirstName = "George", LastName = "Foreman" },
+                new Customer { CustomerId = 250, FirstName = "Jennifer", LastName = "Lopez" },
             };
             foreach (Customer c in customers)
             {
@@ -67,6 +67,19 @@ namespace KingWilliamHotelTest.Models
                 context.Rooms.Add(r);
             }
 
+            context.SaveChanges();
+
+            var reservations = new Reservation[]
+            {
+                new Reservation {RoomId = 100, CustomerId = 100, Amount = 100.0},
+                new Reservation {RoomId = 101, CustomerId = 250, Amount = 300.0}
+                //new Reservation {RoomId = 100, CustomerId = 100, StartDate = 11-22-2018, EndDate = null, Amount = 100.0}
+            };
+
+            foreach (var r in reservations)
+            {
+                context.Reservations.Add(r);
+            }
             context.SaveChanges();
 
         }

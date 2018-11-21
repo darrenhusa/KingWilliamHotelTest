@@ -1,18 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-
+﻿using Microsoft.AspNetCore.Mvc;
+using KingWilliamHotelTest.Models;
 
 namespace KingWilliamHotelTest.Controllers
 {
     public class ReservationController : Controller
     {
-        // GET: /<controller>/
-        public IActionResult Index()
+        private IReservationRepository _repo;
+
+        public ReservationController(IReservationRepository repository)
         {
-            return View();
+            _repo = repository;
         }
+
+        // GET: /<controller>/
+        public ViewResult Index() => View(_repo.Reservations);
     }
 }

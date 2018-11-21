@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,7 +9,8 @@ namespace KingWilliamHotelTest.Models
 {
     public class Customer
     {
-        // Use CustomerId instead of CustomerNo so that EF Core works
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int CustomerId { get; set; }
         public string LastName { get; set; }
         public string FirstName { get; set; }

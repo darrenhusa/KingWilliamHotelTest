@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KingWilliamHotelTest.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181121032011_Initial")]
+    [Migration("20181121150509_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,9 +23,7 @@ namespace KingWilliamHotelTest.Migrations
 
             modelBuilder.Entity("KingWilliamHotelTest.Models.Customer", b =>
                 {
-                    b.Property<int>("CustomerId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<int>("CustomerId");
 
                     b.Property<string>("FirstName");
 

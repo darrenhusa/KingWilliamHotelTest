@@ -25,20 +25,23 @@ namespace KingWilliamHotelTest
         {
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
+            services.AddTransient<IReservationRepository, EfReservationRepository>();
             services.AddMvc();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (env.IsDevelopment())
+            app.UseDeveloperExceptionPage();
+            app.UseStatusCodePages();
+            app.UseStaticFiles();
+            app.UseMvc(routes =>
             {
-                app.UseDeveloperExceptionPage();
-            }
-            app.UseMvc();
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Reservation}/{action=Index}/{id?}");
+            });
 
             DbInitializer.Initialize(app);
-
         }
 
     }
