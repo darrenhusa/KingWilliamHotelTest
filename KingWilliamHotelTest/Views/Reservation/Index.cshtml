@@ -10,14 +10,19 @@
 <h3>Reservation Index</h3>
 <table>
     <thead>
-    <tr>
-        <td>Reservation ID</td>
-        <td>Customer ID</td>
-        <td>Room ID</td>
-        <td>Start Date</td>
-        <td>End Date</td>
-        <td>Amount</td>
-    </tr>
+        <tr>
+            <td>Reservation ID</td>
+            <td>Customer Number</td>
+            <td>Customer LastName</td>
+            <td>Customer FirstName</td>
+            <td>Room Number</td>
+            <td>Room Category</td>
+            <td>Room Unavailable</td>
+            <td>Room Needs Cleaning</td>
+            <td>Start Date</td>
+            <td>End Date</td>
+            <td>Amount</td>
+        </tr>
     </thead>
     <tbody>
     @foreach (var r in Model)
@@ -25,7 +30,12 @@
         <tr>
             <td>@r.ReservationId</td>
             <td>@r.CustomerId</td>
+            <td>@r.Customer.FirstName</td>
+            <td>@r.Customer.LastName</td>
             <td>@r.RoomId</td>
+            <td>@r.Room.Category</td>
+            <td>@r.Room.Unavailable</td>
+            <td>@r.Room.NeedsCleaning</td>
             <td>@r.StartDate</td>
             <td>@r.EndDate</td>
             <td>@r.Amount</td>

@@ -19,7 +19,7 @@ namespace KingWilliamHotelTest.Models
         public int RoomId { get; set; }
 
         // Navigation properties
-        //public ICollection<Room> Rooms { get; set; }
-        //public ICollection<Customer> Customers { get; set; }
+        public Room Room { get; set; }
+        public Customer Customer { get; set; }
     }
 }

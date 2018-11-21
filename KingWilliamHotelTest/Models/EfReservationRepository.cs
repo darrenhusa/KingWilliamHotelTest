@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace KingWilliamHotelTest.Models
 {
@@ -14,6 +15,8 @@ namespace KingWilliamHotelTest.Models
             _ctx = context;
         }
 
-        public IQueryable<Reservation> Reservations => _ctx.Reservations;
+        public IQueryable<Reservation> Reservations => _ctx.Reservations
+            .Include(c => c.Customer)
+            .Include(r => r.Room);
     }
 }

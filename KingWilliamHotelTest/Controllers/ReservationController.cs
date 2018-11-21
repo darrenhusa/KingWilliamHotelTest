@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using KingWilliamHotelTest.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace KingWilliamHotelTest.Controllers
 {
@@ -13,6 +14,9 @@ namespace KingWilliamHotelTest.Controllers
         }
 
         // GET: /<controller>/
-        public ViewResult Index() => View(_repo.Reservations);
+        public ViewResult Index()
+        {
+            return View(_repo.Reservations);
+        }
     }
 }
