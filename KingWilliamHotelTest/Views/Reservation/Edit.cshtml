@@ -9,23 +9,25 @@
 <body>
 <h3>Reservation - Edit</h3>
 <form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="ReservationId"/>
+
     <div class="form-group">
-        <label>Customer ID</label><input asp-for="CustomerId" class="form-control" />
+        <label>Customer ID</label><input asp-for="CustomerId" class="form-control"/>
     </div>
     <div class="form-group">
-        <label>Room Number</label><input asp-for="RoomId" class="form-control" />
+        <label>Room Number</label><input asp-for="RoomId" class="form-control"/>
     </div>
     <div class="form-group">
-        <label>Start Date</label><input asp-for="StartDate" class="form-control" />
+        <label>Start Date</label><input asp-for="StartDate" class="form-control"/>
     </div>
     <div class="form-group">
-        <label>End Date</label><input asp-for="EndDate" class="form-control" />
+        <label>End Date</label><input asp-for="EndDate" class="form-control"/>
     </div>
     <div class="form-group">
-        <label>Amount</label><input asp-for="Amount" class="form-control" />
+        <label>Amount</label><input asp-for="Amount" class="form-control"/>
     </div>
     <div class="texst-center">
-        <input class="btn btn-primary" type="submit" value="Update Reservation" />
+        <input class="btn btn-primary" type="submit" value="Update Reservation"/>
     </div>
 </form>
 </body>

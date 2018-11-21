@@ -27,5 +27,26 @@ namespace KingWilliamHotelTest.Controllers
                 .FirstOrDefault(r => r.ReservationId == reservationId));
         }
 
+        [HttpPost]
+        public IActionResult Edit(Reservation reservation)
+        {
+            if (ModelState.IsValid)
+            {
+                _repo.SaveReservation(reservation);
+                TempData["message"] = $"{reservation.ReservationId} has been saved.";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                // there is something wrong with the data vales
+                return View(reservation);
+
+            }
+            return View(_repo.Reservations
+                .FirstOrDefault(r => r.ReservationId == reservationId));
+        }
+
+
+
     }
 }
