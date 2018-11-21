@@ -7,16 +7,31 @@
     <title>King William Hotel</title>
 </head>
 <body>
+<h3>Reservation Index</h3>
+<table>
+    <thead>
+    <tr>
+        <td>Reservation ID</td>
+        <td>Customer ID</td>
+        <td>Room ID</td>
+        <td>Start Date</td>
+        <td>End Date</td>
+        <td>Amount</td>
+    </tr>
+    </thead>
+    <tbody>
     @foreach (var r in Model)
     {
-    <div>
-        <p>@r.ReservationId</p>
-        <p>@r.CustomerId</p>
-        <p>@r.RoomId</p>
-        <p>@r.StartDate</p>
-        <p>@r.EndDate</p>
-        <p>@r.Amount</p>
-    </div>
-     }   
-    </body>
+        <tr>
+            <td>@r.ReservationId</td>
+            <td>@r.CustomerId</td>
+            <td>@r.RoomId</td>
+            <td>@r.StartDate</td>
+            <td>@r.EndDate</td>
+            <td>@r.Amount</td>
+        </tr>
+    }
+    </tbody>
+</table>
+</body>
 </html>
