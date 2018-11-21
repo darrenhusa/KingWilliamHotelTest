@@ -8,6 +8,12 @@
 </head>
 <body>
 <h3>Reservation Index</h3>
+@if (TempData["message"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["message"]
+    </div>
+}
 <table>
     <thead>
         <tr>
