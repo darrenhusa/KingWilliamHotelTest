@@ -51,7 +51,7 @@ namespace KingWilliamHotelTest.Controllers
         [HttpPost]
         public IActionResult Delete(int reservationId)
         {
-            Reservation deletedReservation = _repo.DeleteReservation((reservationId));
+            Reservation deletedReservation = _repo.DeleteReservation(reservationId);
 
             if (deletedReservation != null)
             {

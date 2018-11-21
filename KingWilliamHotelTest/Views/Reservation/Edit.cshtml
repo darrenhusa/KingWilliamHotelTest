@@ -1,10 +1,13 @@
 ﻿@model Reservation
-
+@{
+    ViewBag.Title = "Edit Reservation";
+    Layout = null;
+}
 <!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Reservation - Edit View</title>
+    <title>@ViewBag.Title</title>
 </head>
 <body>
 <h3>Reservation - Edit</h3>
@@ -12,7 +15,7 @@
     <input type="hidden" asp-for="ReservationId"/>
 
     <div class="form-group">
-        <label>Customer ID</label><input asp-for="CustomerId" class="form-control"/>
+        <label>Customer Number</label><input asp-for="CustomerId" class="form-control"/>
     </div>
     <div class="form-group">
         <label>Room Number</label><input asp-for="RoomId" class="form-control"/>
@@ -27,7 +30,7 @@
         <label>Amount</label><input asp-for="Amount" class="form-control"/>
     </div>
     <div class="texst-center">
-        <input class="btn btn-primary" type="submit" value="Update Reservation"/>
+        <input class="btn btn-primary" type="submit" value="Edit Reservation"/>
     </div>
 </form>
 </body>

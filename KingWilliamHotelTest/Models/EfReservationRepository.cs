@@ -47,6 +47,7 @@ namespace KingWilliamHotelTest.Models
         {
             Reservation dbEntry = _ctx.Reservations
                 .FirstOrDefault(r => r.ReservationId == reservationId);
+
             if (dbEntry != null)
             {
                 _ctx.Reservations.Remove(dbEntry);

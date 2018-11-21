@@ -9,9 +9,12 @@ namespace KingWilliamHotelTest.Models
 {
     public class Customer
     {
-        [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int CustomerId { get; set; }
+
+        //[Key]
+        //[DatabaseGenerated(DatabaseGeneratedOption.None)]
+        //public int CustomerNo { get; set; }
         public string LastName { get; set; }
         public string FirstName { get; set; }
         //public string MI { get; set; }

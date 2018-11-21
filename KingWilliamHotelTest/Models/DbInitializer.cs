@@ -79,7 +79,6 @@ namespace KingWilliamHotelTest.Models
                                  StartDate = new DateTime(2018, 11, 24),
                                  EndDate = new DateTime(2018, 11, 30),
                                  Amount = 300.0}
-                //new Reservation {RoomId = 100, CustomerId = 100, StartDate = 11-22-2018, EndDate = null, Amount = 100.0}
             };
 
             foreach (var r in reservations)

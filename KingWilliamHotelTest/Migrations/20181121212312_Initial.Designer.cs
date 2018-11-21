@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KingWilliamHotelTest.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181121153003_Initial")]
+    [Migration("20181121212312_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -91,12 +91,12 @@ namespace KingWilliamHotelTest.Migrations
 
             modelBuilder.Entity("KingWilliamHotelTest.Models.Reservation", b =>
                 {
-                    b.HasOne("KingWilliamHotelTest.Models.Customer")
+                    b.HasOne("KingWilliamHotelTest.Models.Customer", "Customer")
                         .WithMany("Reservations")
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("KingWilliamHotelTest.Models.Room")
+                    b.HasOne("KingWilliamHotelTest.Models.Room", "Room")
                         .WithMany("Reservations")
                         .HasForeignKey("RoomId")
                         .OnDelete(DeleteBehavior.Cascade);
