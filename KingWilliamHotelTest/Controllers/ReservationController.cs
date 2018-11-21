@@ -33,7 +33,7 @@ namespace KingWilliamHotelTest.Controllers
             if (ModelState.IsValid)
             {
                 _repo.SaveReservation(reservation);
-                TempData["message"] = $"{reservation.ReservationId} has been saved.";
+                TempData["message"] = $"Reservation {reservation.ReservationId} has been saved.";
                 return RedirectToAction("Index");
             }
             else
@@ -45,7 +45,20 @@ namespace KingWilliamHotelTest.Controllers
            
         }
 
+        // GET: /<controller>/Create
+        public ViewResult Create() => View("Edit", new Reservation());
 
+        [HttpPost]
+        public IActionResult Delete(int reservationId)
+        {
+            Reservation deletedReservation = _repo.DeleteReservation((reservationId));
 
+            if (deletedReservation != null)
+            {
+                TempData["message"] = $"Reservation {deletedReservation.ReservationId} was deleted.";
+            }
+
+            return RedirectToAction("Index");
+        }
     }
 }

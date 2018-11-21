@@ -7,5 +7,7 @@ namespace KingWilliamHotelTest.Models
         IQueryable<Reservation> Reservations { get; }
 
         void SaveReservation(Reservation reservation);
+
+        Reservation DeleteReservation(int reservationId);
     }
 }

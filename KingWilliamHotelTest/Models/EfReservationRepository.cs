@@ -42,5 +42,18 @@ namespace KingWilliamHotelTest.Models
 
             _ctx.SaveChanges();
         }
+
+        public Reservation DeleteReservation(int reservationId)
+        {
+            Reservation dbEntry = _ctx.Reservations
+                .FirstOrDefault(r => r.ReservationId == reservationId);
+            if (dbEntry != null)
+            {
+                _ctx.Reservations.Remove(dbEntry);
+                _ctx.SaveChanges();
+            }
+
+            return dbEntry;
+        }
     }
 }
