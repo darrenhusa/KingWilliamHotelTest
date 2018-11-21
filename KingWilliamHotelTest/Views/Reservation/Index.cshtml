@@ -45,8 +45,8 @@
                     <td>@r.Room.Category</td>
                     <td>@r.Room.Unavailable</td>
                     <td>@r.Room.NeedsCleaning</td>
-                    <td>@r.StartDate</td>
-                    <td>@r.EndDate</td>
+                    <td>@r.StartDate.ToShortDateString()</td>
+                    <td>@r.EndDate.ToShortDateString()</td>
                     <td>@r.Amount</td>
                 </tr>
             }
