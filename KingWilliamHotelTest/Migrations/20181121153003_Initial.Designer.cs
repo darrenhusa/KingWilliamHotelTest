@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KingWilliamHotelTest.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181121150509_Initial")]
+    [Migration("20181121153003_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
