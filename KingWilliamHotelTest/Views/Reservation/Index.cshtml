@@ -1,22 +1,11 @@
 ﻿@model IEnumerable<Reservation>
 @{
     ViewBag.Title = "All Reservations";
-    Layout = null;
+    Layout = "_Layout";
 }
-<!DOCTYPE html>
-<html>
-<head>
-    <meta name="Viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
-</head>
-<body>
-    <h3>Reservation Index</h3>
-    @if (TempData["message"] != null)
-    {
-        <div class="alert alert-success">
-            @TempData["message"]
-        </div>
-    }
+
+<h3>Reservation Index</h3>
+
 <table>
     <thead>
     <tr>
@@ -63,5 +52,3 @@
 <div class="texst-center">
     <a asp-action="Create" class="btn btn-primary">Add Reservation</a>
 </div>
-</body>
-</html>

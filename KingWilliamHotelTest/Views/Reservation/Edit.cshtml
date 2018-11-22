@@ -1,15 +1,9 @@
 ﻿@model Reservation
 @{
     ViewBag.Title = "Edit Reservation";
-    Layout = null;
+    Layout = "_Layout";
 }
-<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
-</head>
-<body>
+
 <h3>Reservation - Edit</h3>
 <form asp-action="Edit" method="post">
     <input type="hidden" asp-for="ReservationId"/>
@@ -30,8 +24,7 @@
         <label>Amount</label><input asp-for="Amount" class="form-control"/>
     </div>
     <div class="texst-center">
-        <input class="btn btn-primary" type="submit" value="Edit Reservation"/>
+        <button class="btn btn-primary" type="submit">Save</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
     </div>
 </form>
-</body>
-</html>
