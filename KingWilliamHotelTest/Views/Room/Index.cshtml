@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Room>
+@{
+    ViewBag.Title = "All Rooms";
+    Layout = "_Layout";
+}
+
+<h3>Rooms Index</h3>
+
+<table>
+    <thead>
+    <tr>
+        <th>Room Number</th>
+        <th>Room Category</th>
+        <th>Room Unavailable</th>
+        <th>Room Needs Cleaning</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var r in Model)
+    {
+        <tr>
+            <td>@r.RoomId</td>
+            <td>@r.Category</td>
+            <td>@r.Unavailable</td>
+            <td>@r.NeedsCleaning</td>
+            <td>
+                <form asp-action="Delete" method="post">
+                    <a asp-action="Edit" asp-route-roomId="@r.RoomId">Edit</a>
+                    <input type="hidden" name="RoomId" value="@r.RoomId"/>
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+<div class="texst-center">
+    <a asp-action="Create" class="btn btn-primary">Add Room</a>
+</div>

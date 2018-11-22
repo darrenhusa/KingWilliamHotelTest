@@ -26,6 +26,7 @@ namespace KingWilliamHotelTest
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddTransient<IReservationRepository, EfReservationRepository>();
+            services.AddTransient<IRoomRepository, EfRoomRepository>();
             services.AddMvc();
         }
 
