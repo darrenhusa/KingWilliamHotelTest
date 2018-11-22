@@ -17,40 +17,51 @@
             @TempData["message"]
         </div>
     }
-    <table>
-        <thead>
-            <tr>
-                <td>Reservation Number</td>
-                <td>Customer Number</td>
-                <td>Customer LastName</td>
-                <td>Customer FirstName</td>
-                <td>Room Number</td>
-                <td>Room Category</td>
-                <td>Room Unavailable</td>
-                <td>Room Needs Cleaning</td>
-                <td>Start Date</td>
-                <td>End Date</td>
-                <td>Amount</td>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var r in Model)
-            {
-                <tr>
-                    <td>@r.ReservationId</td>
-                    <td>@r.CustomerId</td>
-                    <td>@r.Customer.FirstName</td>
-                    <td>@r.Customer.LastName</td>
-                    <td>@r.RoomId</td>
-                    <td>@r.Room.Category</td>
-                    <td>@r.Room.Unavailable</td>
-                    <td>@r.Room.NeedsCleaning</td>
-                    <td>@r.StartDate.ToShortDateString()</td>
-                    <td>@r.EndDate.ToShortDateString()</td>
-                    <td>@r.Amount</td>
-                </tr>
-            }
-        </tbody>
-    </table>
+<table>
+    <thead>
+    <tr>
+        <th>Reservation Number</th>
+        <th>Customer Number</th>
+        <th>Customer LastName</th>
+        <th>Customer FirstName</th>
+        <th>Room Number</th>
+        <th>Room Category</th>
+        <th>Room Unavailable</th>
+        <th>Room Needs Cleaning</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Amount</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var r in Model)
+    {
+        <tr>
+            <td>@r.ReservationId</td>
+            <td>@r.CustomerId</td>
+            <td>@r.Customer.FirstName</td>
+            <td>@r.Customer.LastName</td>
+            <td>@r.RoomId</td>
+            <td>@r.Room.Category</td>
+            <td>@r.Room.Unavailable</td>
+            <td>@r.Room.NeedsCleaning</td>
+            <td>@r.StartDate.ToShortDateString()</td>
+            <td>@r.EndDate.ToShortDateString()</td>
+            <td>@r.Amount</td>
+            <td>
+                <form asp-action="Delete" method="post">
+                    <a asp-action="Edit" asp-route-reservationId="@r.ReservationId">Edit</a>
+                    <input type="hidden" name="ReservationId" value="@r.ReservationId"/>
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+<div class="texst-center">
+    <a asp-action="Create" class="btn btn-primary">Add Reservation</a>
+</div>
 </body>
 </html>
