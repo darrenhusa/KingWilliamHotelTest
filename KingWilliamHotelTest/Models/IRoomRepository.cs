@@ -6,8 +6,8 @@ namespace KingWilliamHotelTest.Models
     {
         IQueryable<Room> Rooms { get; }
 
-        //void SaveRoom(Room room);
+        void SaveRoom(Room room);
 
-        //Room DeleteRoom(int roomId);
+        Room DeleteRoom(int roomId);
     }
 }

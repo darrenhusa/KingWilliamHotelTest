@@ -19,42 +19,41 @@ namespace KingWilliamHotelTest.Models
         //.Include(c => c.Customer)
         //.Include(r => r.Room);
 
-        //public void SaveReservation(Reservation reservation)
-        //{
-        //    if (reservation.ReservationId == 0)
-        //    {
-        //        _ctx.Reservations.Add(reservation);
-        //    }
-        //    else
-        //    {
-        //        Reservation dbEntry = _ctx.Reservations
-        //            .FirstOrDefault(r => r.ReservationId == reservation.ReservationId);
+        public void SaveRoom(Room room)
+        {
+            if (room.RoomId == 0)
+            {
+                _ctx.Rooms.Add(room);
+            }
+            else
+            {
+                Room dbEntry = _ctx.Rooms
+                    .FirstOrDefault(r => r.RoomId == room.RoomId);
 
-        //        if (dbEntry != null)
-        //        {
-        //            dbEntry.CustomerId = reservation.CustomerId;
-        //            dbEntry.RoomId = reservation.RoomId;
-        //            dbEntry.StartDate = reservation.StartDate;
-        //            dbEntry.EndDate = reservation.EndDate;
-        //            dbEntry.Amount = reservation.Amount;
-        //        }
-        //    }
+                if (dbEntry != null)
+                {
+                    dbEntry.RoomId = room.RoomId;
+                    dbEntry.Category = room.Category;
+                    dbEntry.NeedsCleaning = room.NeedsCleaning;
+                    dbEntry.Unavailable = room.Unavailable;
+                }
+            }
 
-        //    _ctx.SaveChanges();
-        //}
+            _ctx.SaveChanges();
+        }
 
-        //public Reservation DeleteReservation(int reservationId)
-        //{
-        //    Reservation dbEntry = _ctx.Reservations
-        //        .FirstOrDefault(r => r.ReservationId == reservationId);
+        public Room DeleteRoom(int roomId)
+        {
+            Room dbEntry = _ctx.Rooms
+                .FirstOrDefault(r => r.RoomId == roomId);
 
-        //    if (dbEntry != null)
-        //    {
-        //        _ctx.Reservations.Remove(dbEntry);
-        //        _ctx.SaveChanges();
-        //    }
+            if (dbEntry != null)
+            {
+                _ctx.Rooms.Remove(dbEntry);
+                _ctx.SaveChanges();
+            }
 
-        //    return dbEntry;
-        //}
+            return dbEntry;
+        }
     }
 }

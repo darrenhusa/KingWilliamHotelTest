@@ -21,44 +21,44 @@ namespace KingWilliamHotelTest.Controllers
         }
 
         // GET: /<controller>/Edit/id
-        //public ViewResult Edit(int reservationId)
-        //{
-        //    return View(_repo.Reservations
-        //        .FirstOrDefault(r => r.ReservationId == reservationId));
-        //}
+        public ViewResult Edit(int roomId)
+        {
+            return View(_repo.Rooms
+                .FirstOrDefault(r => r.RoomId == roomId));
+        }
 
-        //[HttpPost]
-        //public IActionResult Edit(Reservation reservation)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        _repo.SaveReservation(reservation);
-        //        TempData["message"] = $"Reservation {reservation.ReservationId} has been saved.";
-        //        return RedirectToAction("Index");
-        //    }
-        //    else
-        //    {
-        //        // there is something wrong with the data vales
-        //        return View(reservation);
+        // POST: /<controller>/Edit/id
+        [HttpPost]
+        public IActionResult Edit(Room room)
+        {
+            if (ModelState.IsValid)
+            {
+                _repo.SaveRoom(room);
+                TempData["message"] = $"Room {room.RoomId} has been saved.";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                // there is something wrong with the data vales
+                return View(room);
+            }
+        }
 
-        //    }
-           
-        //}
+        // GET: /<controller>/Create
+        public ViewResult Create() => View("Edit", new Room());
 
-        //// GET: /<controller>/Create
-        //public ViewResult Create() => View("Edit", new Reservation());
+        // POST: /<controller>/Delete/id
+        [HttpPost]
+        public IActionResult Delete(int roomId)
+        {
+            Room deletedRoom = _repo.DeleteRoom(roomId);
 
-        //[HttpPost]
-        //public IActionResult Delete(int reservationId)
-        //{
-        //    Reservation deletedReservation = _repo.DeleteReservation(reservationId);
+            if (deletedRoom != null)
+            {
+                TempData["message"] = $"Room {deletedRoom.RoomId} was deleted.";
+            }
 
-        //    if (deletedReservation != null)
-        //    {
-        //        TempData["message"] = $"Reservation {deletedReservation.ReservationId} was deleted.";
-        //    }
-
-        //    return RedirectToAction("Index");
-        //}
+            return RedirectToAction("Index");
+        }
     }
 }
