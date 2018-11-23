@@ -20,6 +20,14 @@ namespace KingWilliamHotelTest.Controllers
             return View(_repo.Rooms);
         }
 
+        // GET: /<controller>/
+        public ViewResult ListAvailable(string category)
+        {
+            return View(_repo.Rooms
+                .Where(r => r.Category == category)
+                .Where(r => r.Unavailable == false)
+                .Where(r => r.NeedsCleaning == false));
+        }
         // GET: /<controller>/Edit/id
         public ViewResult Edit(int roomId)
         {

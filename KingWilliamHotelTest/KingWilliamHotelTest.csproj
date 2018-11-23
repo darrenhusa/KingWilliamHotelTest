@@ -17,6 +17,9 @@
     <Content Update="Views\Room\Edit.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\Room\ListAvailable.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Room\Index.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
