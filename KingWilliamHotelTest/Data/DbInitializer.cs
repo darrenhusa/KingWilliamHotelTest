@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace KingWilliamHotelTest.Models
+namespace KingWilliamHotelTest.Data
 {
     public static class DbInitializer
     {

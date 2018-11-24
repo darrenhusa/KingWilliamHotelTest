@@ -1,6 +1,10 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using KingWilliamHotelTest.Data;
 using Microsoft.AspNetCore.Mvc;
 using KingWilliamHotelTest.Models;
+using KingWilliamHotelTest.Data;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace KingWilliamHotelTest.Controllers
@@ -18,6 +22,21 @@ namespace KingWilliamHotelTest.Controllers
         public ViewResult Index()
         {
             return View(_repo.Reservations);
+        }
+
+        // GET: /<controller>/
+        public ViewResult GetAvailableRooms(int customerId, DateTime startDate, DateTime endDate, string category)
+        {
+            // .Select(r => new { r.RoomId, r.StartDate, r.EndDate })
+            var reservations = _repo.Reservations
+                .Where(r => (r.StartDate <= startDate) && (r.EndDate >= endDate))
+                .Where(r => ((r.StartDate >= startDate) && (r.StartDate <= endDate)) && (r.EndDate >= endDate))
+                .Where(r => (r.StartDate <= startDate) && ((r.EndDate >= startDate) && (r.EndDate <= endDate)));
+
+            ViewBag.Reservations = reservations;
+
+            return View("ListAvailable");
+            //return View("ListAvailable", reservations);
         }
 
         // GET: /<controller>/Edit/id

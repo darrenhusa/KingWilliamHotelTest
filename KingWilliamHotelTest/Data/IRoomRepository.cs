@@ -1,6 +1,7 @@
 ﻿using System.Linq;
+using KingWilliamHotelTest.Models;
 
-namespace KingWilliamHotelTest.Models
+namespace KingWilliamHotelTest.Data
 {
     public interface IRoomRepository
     {

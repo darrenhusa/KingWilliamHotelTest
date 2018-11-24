@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using KingWilliamHotelTest.Models;
 
-namespace KingWilliamHotelTest.Models
+namespace KingWilliamHotelTest.Data
 {
     public class EfReservationRepository : IReservationRepository
     {

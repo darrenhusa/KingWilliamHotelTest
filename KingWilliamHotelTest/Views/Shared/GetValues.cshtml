@@ -1,0 +1,35 @@
+﻿@model Reservation
+@{
+    ViewBag.Title = "Make Reservation";
+    Layout = "_Layout";
+}
+
+<h3>Make Reservation</h3>
+<form asp-controller="Reservation" asp-action="GetAvailableRooms" method="get">
+
+    <div class="form-group">
+        <!-- Pass customer no in from route? -->
+        <label asp-for="CustomerId">Customer Number</label><input asp-for="CustomerId" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="StartDate">Start Date</label><input asp-for="StartDate" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="EndDate">End Date</label><input asp-for="EndDate" class="form-control" />
+    </div>
+
+    <!--    How can you load values from the db table?    -->
+    <select asp-for="Room.Category" name="Category" id="Category">
+        <option value="Deluxe">Deluxe</option>
+        <option selected="selected" value="Economy">Economy</option>
+        <option value="Suite">Suite</option>
+    </select>
+
+    <div class="text-center">
+        <button class="btn btn-primary" type="submit">Load Rooms</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </div>
+</form>
+
+<!-- Add a table for the available rooms -->

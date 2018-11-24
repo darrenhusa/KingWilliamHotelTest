@@ -1,6 +1,8 @@
 ﻿using System.Linq;
+using KingWilliamHotelTest.Data;
 using Microsoft.AspNetCore.Mvc;
 using KingWilliamHotelTest.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace KingWilliamHotelTest.Controllers
@@ -8,6 +10,7 @@ namespace KingWilliamHotelTest.Controllers
     public class RoomController : Controller
     {
         private IRoomRepository _repo;
+        //private IRoomDescRepository _repo;
 
         public RoomController(IRoomRepository repository)
         {
@@ -21,12 +24,22 @@ namespace KingWilliamHotelTest.Controllers
         }
 
         // GET: /<controller>/
+        //public ViewResult GetRoomCategories()
+        //{
+        //    ViewBag.Categories = new SelectList(_repo.Rooms)
+        //    return View();
+        //}
+
+
+        // GET: /<controller>/
         public ViewResult ListAvailable(string category)
         {
-            return View(_repo.Rooms
+            var rooms = _repo.Rooms
                 .Where(r => r.Category == category)
-                .Where(r => r.Unavailable == false)
-                .Where(r => r.NeedsCleaning == false));
+                .Where(r => !r.Unavailable)
+                .Where(r => !r.NeedsCleaning);
+
+            return View(rooms);
         }
         // GET: /<controller>/Edit/id
         public ViewResult Edit(int roomId)

@@ -4,8 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore;
+using KingWilliamHotelTest.Models;
 
-namespace KingWilliamHotelTest.Models
+namespace KingWilliamHotelTest.Data
 {
     public class ApplicationDbContext : DbContext
     {
