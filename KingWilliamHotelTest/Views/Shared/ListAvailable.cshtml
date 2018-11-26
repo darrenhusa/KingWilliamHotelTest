@@ -1,30 +1,56 @@
-﻿@model IEnumerable<Room>
+﻿@model ReservationRoomViewModel
 @{
     ViewBag.Title = "Available Rooms";
     Layout = "_Layout";
 }
 
+<h3>Available Reservations</h3>
+
+<table>
+    <thead>
+        <tr>
+            <th>Room ID</th>
+            <th>Unavailable</th>
+            <th>Needs Cleaning</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var r in Model)
+        {
+        <tr>
+            <td>@r.RoomId</td>
+            <td>@r.Unavailable</td>
+            <td>@r.NeedsCleaning</td>
+            <td>???</td>
+            <td>???</td>
+        </tr>
+        }
+    </tbody>
+</table>
+
 <h3>Available Rooms</h3>
 
 <table>
     <thead>
-    <tr>
-        <th>Room Number</th>
-        <th>Room Category</th>
-        <th>Room Unavailable</th>
-        <th>Room Needs Cleaning</th>
-    </tr>
+        <tr>
+            <th>Room Number</th>
+            <th>Room Category</th>
+            <th>Room Unavailable</th>
+            <th>Room Needs Cleaning</th>
+        </tr>
     </thead>
     <tbody>
-    @foreach (var r in Model)
-    {
-        <tr>
-            <td>@r.RoomId</td>
-            <td>@r.Category</td>
-            <td>@r.Unavailable</td>
-            <td>@r.NeedsCleaning</td>
-        </tr>
-    }
+        @foreach (var r in Model.Rooms)
+        {
+            <tr>
+                <td>@r.RoomId</td>
+                <td>@r.Category</td>
+                <td>@r.Unavailable</td>
+                <td>@r.NeedsCleaning</td>
+            </tr>
+        }
     </tbody>
 </table>
 <div class="text-center">

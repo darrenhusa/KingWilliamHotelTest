@@ -3,6 +3,7 @@ using System.Linq;
 using KingWilliamHotelTest.Data;
 using Microsoft.AspNetCore.Mvc;
 using KingWilliamHotelTest.Models;
+using KingWilliamHotelTest.Models.ViewModel;
 using KingWilliamHotelTest.Data;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -12,10 +13,12 @@ namespace KingWilliamHotelTest.Controllers
     public class ReservationController : Controller
     {
         private IReservationRepository _repo;
+        private IRoomRepository _roomRepo;
 
-        public ReservationController(IReservationRepository repository)
+        public ReservationController(IReservationRepository repository, IRoomRepository roomRepository)
         {
             _repo = repository;
+            _roomRepo = roomRepository;
         }
 
         // GET: /<controller>/
@@ -25,20 +28,47 @@ namespace KingWilliamHotelTest.Controllers
         }
 
         // GET: /<controller>/
+        public ViewResult GetValues()
+        {
+            return View();
+        }
+
+        // GET: /<controller>/
         public ViewResult GetAvailableRooms(int customerId, DateTime startDate, DateTime endDate, string category)
         {
+            ReservationRoomViewModel data = new  ReservationRoomViewModel();
+
             // .Select(r => new { r.RoomId, r.StartDate, r.EndDate })
             var reservations = _repo.Reservations
+                .Select(r => new { r.RoomId, r.StartDate, r.EndDate })
                 .Where(r => (r.StartDate <= startDate) && (r.EndDate >= endDate))
                 .Where(r => ((r.StartDate >= startDate) && (r.StartDate <= endDate)) && (r.EndDate >= endDate))
                 .Where(r => (r.StartDate <= startDate) && ((r.EndDate >= startDate) && (r.EndDate <= endDate)));
 
-            ViewBag.Reservations = reservations;
+            var rooms = _roomRepo.Rooms.Where(r => r.Category == category);
 
-            return View("ListAvailable");
+            // outer join query using linq method syntax
+            var query = rooms.GroupJoin(reservations,
+                room => room.RoomId,
+                reservation => reservation.RoomId,
+                (room, reservationGroup) => new
+                {
+                    RoomId = room.RoomId,
+                    Unavailable = room.Unavailable,
+                    NeedsCleaning = room.NeedsCleaning,
+                    Reservations = reservationGroup
+                });
+
+            //data.Reservations = reservations;
+            //data.Rooms = availableRooms;
+
+            return View("ListAvailable", query);
+            //return View("ListAvailable", data);
             //return View("ListAvailable", reservations);
         }
 
+        
+        
         // GET: /<controller>/Edit/id
         public ViewResult Edit(int reservationId)
         {
