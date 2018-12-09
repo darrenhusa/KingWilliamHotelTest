@@ -1,58 +1,27 @@
-﻿@model ReservationRoomViewModel
+﻿@model IQueryable<KingWilliamHotelTest.Controllers.ReservationController.AvailableRooms>
 @{
     ViewBag.Title = "Available Rooms";
     Layout = "_Layout";
 }
-
-<h3>Available Reservations</h3>
-
-<table>
-    <thead>
-        <tr>
-            <th>Room ID</th>
-            <th>Unavailable</th>
-            <th>Needs Cleaning</th>
-            <th>Start Date</th>
-            <th>End Date</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var r in Model)
-        {
-        <tr>
-            <td>@r.RoomId</td>
-            <td>@r.Unavailable</td>
-            <td>@r.NeedsCleaning</td>
-            <td>???</td>
-            <td>???</td>
-        </tr>
-        }
-    </tbody>
-</table>
 
 <h3>Available Rooms</h3>
 
 <table>
     <thead>
         <tr>
-            <th>Room Number</th>
-            <th>Room Category</th>
-            <th>Room Unavailable</th>
-            <th>Room Needs Cleaning</th>
+            <th>Room ID</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var r in Model.Rooms)
+        @foreach (var r in Model)
         {
-            <tr>
-                <td>@r.RoomId</td>
-                <td>@r.Category</td>
-                <td>@r.Unavailable</td>
-                <td>@r.NeedsCleaning</td>
-            </tr>
+        <tr>
+            <td>@r.RoomNo</td>
+        </tr>
         }
     </tbody>
 </table>
+
 <div class="text-center">
     <a asp-action="" class="btn btn-primary">Return</a>
 </div>

@@ -27,9 +27,11 @@ namespace KingWilliamHotelTest.Data
             var customers = new Customer[]
             {
                 new Customer { CustomerId = 100, FirstName = "Darren", LastName = "Henderson" },
-                new Customer { CustomerId = 150, FirstName = "Richard", LastName = "Dawson" },
-                new Customer { CustomerId = 200, FirstName = "George", LastName = "Foreman" },
-                new Customer { CustomerId = 250, FirstName = "Jennifer", LastName = "Lopez" },
+                new Customer { CustomerId = 110, FirstName = "Richard", LastName = "Dawson" },
+                new Customer { CustomerId = 120, FirstName = "George", LastName = "Foreman" },
+                new Customer { CustomerId = 125, FirstName = "Jennifer", LastName = "Lopez" },
+                new Customer { CustomerId = 130, FirstName = "Matt", LastName = "Nagy" },
+                new Customer { CustomerId = 140, FirstName = "Mitch", LastName = "Trubisky" },
             };
             foreach (Customer c in customers)
             {
@@ -57,10 +59,15 @@ namespace KingWilliamHotelTest.Data
                 new Room { RoomId = 103, Unavailable = false, NeedsCleaning = false, Category = "Economy" },
                 new Room { RoomId = 104, Unavailable = false, NeedsCleaning = false, Category = "Economy" },
                 new Room { RoomId = 105, Unavailable = false, NeedsCleaning = false, Category = "Economy" },
-                new Room { RoomId = 106, Unavailable = true, NeedsCleaning = false, Category = "Economy" },
-                new Room { RoomId = 107, Unavailable = true, NeedsCleaning = false, Category = "Economy" },
-                new Room { RoomId = 108, Unavailable = true, NeedsCleaning = true, Category = "Economy" },
-                new Room { RoomId = 109, Unavailable = true, NeedsCleaning = true, Category = "Economy" },
+                new Room { RoomId = 106, Unavailable = true, NeedsCleaning = true, Category = "Economy" },
+                new Room { RoomId = 107, Unavailable = true, NeedsCleaning = true, Category = "Economy" },
+                new Room { RoomId = 108, Unavailable = false, NeedsCleaning = true, Category = "Economy" },
+                new Room { RoomId = 109, Unavailable = false, NeedsCleaning = true, Category = "Economy" },
+                new Room { RoomId = 200, Unavailable = false, NeedsCleaning = true, Category = "Deluxe" },
+                new Room { RoomId = 201, Unavailable = true, NeedsCleaning = true, Category = "Deluxe" },
+                new Room { RoomId = 300, Unavailable = true, NeedsCleaning = false, Category = "Suite" },
+                new Room { RoomId = 301, Unavailable = false, NeedsCleaning = false, Category = "Suite" },
+                new Room { RoomId = 302, Unavailable = true, NeedsCleaning = false, Category = "Suite" },
             };
             foreach (var r in rooms)
             {
@@ -71,14 +78,42 @@ namespace KingWilliamHotelTest.Data
 
             var reservations = new Reservation[]
             {
-                new Reservation {RoomId = 100, CustomerId = 100,
-                                 StartDate = new DateTime(2018, 11, 22),
-                                 EndDate = new DateTime(2018, 11, 25),
-                                 Amount = 100.0},
-                new Reservation {RoomId = 101, CustomerId = 250,
-                                 StartDate = new DateTime(2018, 11, 24),
+                new Reservation {RoomId = 100, 
+                                 StartDate = new DateTime(2018, 11, 25),
                                  EndDate = new DateTime(2018, 11, 30),
-                                 Amount = 300.0}
+                                 Amount = 0.0,
+                                 CustomerId = 100},
+                
+                new Reservation {RoomId = 101, 
+                                 StartDate = new DateTime(2018, 11, 25),
+                                 EndDate = new DateTime(2018, 11, 27),
+                                 Amount = 0.0,
+                                 CustomerId = 110},
+
+                new Reservation {RoomId = 300,
+                                 StartDate = new DateTime(2018, 11, 23),
+                                 EndDate = new DateTime(2018, 11, 30),
+                                 Amount = 0.0,
+                                 CustomerId = 130},
+
+                new Reservation {RoomId = 105,
+                                 StartDate = new DateTime(2018, 11, 23),
+                                 EndDate = new DateTime(2018, 11, 30),
+                                 Amount = 0.0,
+                                 CustomerId = 120},
+
+                new Reservation {RoomId = 100,
+                                 StartDate = new DateTime(2018, 12, 1),
+                                 EndDate = new DateTime(2018, 12, 5),
+                                 Amount = 0.0,
+                                 CustomerId = 120},
+
+                new Reservation {RoomId = 201,
+                                 StartDate = new DateTime(2018, 11, 25),
+                                 EndDate = new DateTime(2018, 11, 30),
+                                 Amount = 0.0,
+                                 CustomerId = 140},
+
             };
 
             foreach (var r in reservations)

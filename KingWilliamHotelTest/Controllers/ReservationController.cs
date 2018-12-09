@@ -34,41 +34,40 @@ namespace KingWilliamHotelTest.Controllers
         }
 
         // GET: /<controller>/
-        public ViewResult GetAvailableRooms(int customerId, DateTime startDate, DateTime endDate, string category)
+        public ViewResult GetAvailableRooms()
+        //public ViewResult GetAvailableRooms(DateTime startDate, DateTime endDate, string category)
         {
-            ReservationRoomViewModel data = new  ReservationRoomViewModel();
+            //ReservationRoomViewModel data = new  ReservationRoomViewModel();
 
-            // .Select(r => new { r.RoomId, r.StartDate, r.EndDate })
-            var reservations = _repo.Reservations
-                .Select(r => new { r.RoomId, r.StartDate, r.EndDate })
-                .Where(r => (r.StartDate <= startDate) && (r.EndDate >= endDate))
-                .Where(r => ((r.StartDate >= startDate) && (r.StartDate <= endDate)) && (r.EndDate >= endDate))
-                .Where(r => (r.StartDate <= startDate) && ((r.EndDate >= startDate) && (r.EndDate <= endDate)));
+            var startDate = new DateTime(2018, 11, 25);
+            var endDate = new DateTime(2018, 11, 30);
+            var category = "Economy";
 
-            var rooms = _roomRepo.Rooms.Where(r => r.Category == category);
+            var rot = _roomRepo.Rooms.Where(r => r.Category == category)
+                           .OrderBy(r => r.RoomId);
 
-            // outer join query using linq method syntax
-            var query = rooms.GroupJoin(reservations,
-                room => room.RoomId,
-                reservation => reservation.RoomId,
-                (room, reservationGroup) => new
+            var r1 = _repo.Reservations.Where(r => (r.StartDate <= startDate && r.EndDate >= endDate) ||
+                            (r.StartDate >= startDate && r.StartDate <= endDate && r.EndDate >= endDate) ||
+                            (r.StartDate <= startDate && r.StartDate >= startDate && r.EndDate <= endDate));
+
+            var MyData =
+                from room in rot
+                join room2 in r1 on room.RoomId equals room2.RoomId into gj
+                from sr in gj.DefaultIfEmpty()
+                where sr.RoomId == null
+                select new AvailableRooms
                 {
-                    RoomId = room.RoomId,
-                    Unavailable = room.Unavailable,
-                    NeedsCleaning = room.NeedsCleaning,
-                    Reservations = reservationGroup
-                });
+                    RoomNo = room.RoomId,
+                };
 
-            //data.Reservations = reservations;
-            //data.Rooms = availableRooms;
-
-            return View("ListAvailable", query);
-            //return View("ListAvailable", data);
-            //return View("ListAvailable", reservations);
+            return View("ListAvailable", MyData);
         }
 
-        
-        
+        public class AvailableRooms
+        {
+            public int RoomNo { get; set; }
+        }
+
         // GET: /<controller>/Edit/id
         public ViewResult Edit(int reservationId)
         {
