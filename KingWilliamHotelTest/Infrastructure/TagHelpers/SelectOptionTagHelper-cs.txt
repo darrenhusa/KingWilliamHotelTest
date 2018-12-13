@@ -1,0 +1,70 @@
+﻿using System;
+using System.Linq;
+using System.Reflection;
+using System.Threading.Tasks;
+using KingWilliamHotelTest.Data;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using Microsoft.AspNetCore.Razor.TagHelpers;
+
+namespace KingWilliamHotelTest.Infrastructure.TagHelpers {
+
+    [HtmlTargetElement("select", Attributes = "model-for")]
+    public class SelectOptionTagHelper : TagHelper {
+        private IReservationRepository _repo; 
+        private IRoomRepository _roomRepo; 
+
+        public SelectOptionTagHelper(IReservationRepository repo, IRoomRepository roomRepo) {
+            _repo = repo;
+            _roomRepo = roomRepo;
+        }
+
+        DateTime startDate = new DateTime(2018, 11, 25);
+        DateTime endDate = new DateTime(2018, 11, 30);
+        string category = "Economy";
+
+        var rot = _roomRepo.Rooms.Where(r => r.Category == category)
+            .OrderBy(r => r.RoomId);
+
+        var r1 = _repo.Reservations.Where(r => (r.StartDate <= startDate && r.EndDate >= endDate) ||
+                                               (r.StartDate >= startDate && r.StartDate <= endDate && r.EndDate >= endDate) ||
+                                               (r.StartDate <= startDate && r.StartDate >= startDate && r.EndDate <= endDate));
+
+        var MyData =
+            from room in rot
+            join room2 in r1 on room.RoomId equals room2.RoomId into gj
+            from sr in gj.DefaultIfEmpty()
+            where sr.RoomId == null
+            select new AvailableRooms
+            {
+                RoomNo = room.RoomId,
+            };
+
+
+        public ModelExpression ModelFor { get; set; }
+
+        public override async Task ProcessAsync(TagHelperContext context,
+                TagHelperOutput output) {
+
+            output.Content.AppendHtml(
+                (await output.GetChildContentAsync(false)).GetContent());
+
+            string selected = ModelFor.Model as string;
+
+            PropertyInfo property = typeof(City)
+                .GetTypeInfo().GetDeclaredProperty(ModelFor.Name);
+
+            foreach (string country in repository.Cities
+                    .Select(c => property.GetValue(c)).Distinct()) {
+
+                if (selected != null && selected.Equals(country, StringComparison.OrdinalIgnoreCase)) {
+                    output.Content
+                        .AppendHtml($"<option selected>{country}</option>");
+                } else {
+                    output.Content.AppendHtml($"<option>{country}</option>");
+                }
+            }
+            output.Attributes.SetAttribute("Name", ModelFor.Name);
+            output.Attributes.SetAttribute("Id", ModelFor.Name);
+        }
+    }
+}

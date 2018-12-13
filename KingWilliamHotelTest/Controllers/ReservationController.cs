@@ -3,17 +3,13 @@ using System.Linq;
 using KingWilliamHotelTest.Data;
 using Microsoft.AspNetCore.Mvc;
 using KingWilliamHotelTest.Models;
-using KingWilliamHotelTest.Models.ViewModel;
-using KingWilliamHotelTest.Data;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 
 namespace KingWilliamHotelTest.Controllers
 {
     public class ReservationController : Controller
     {
-        private IReservationRepository _repo;
-        private IRoomRepository _roomRepo;
+        private readonly IReservationRepository _repo;
+        private readonly IRoomRepository _roomRepo;
 
         public ReservationController(IReservationRepository repository, IRoomRepository roomRepository)
         {
@@ -34,14 +30,12 @@ namespace KingWilliamHotelTest.Controllers
         }
 
         // GET: /<controller>/
-        public ViewResult GetAvailableRooms()
-        //public ViewResult GetAvailableRooms(DateTime startDate, DateTime endDate, string category)
+        //public ViewResult GetAvailableRooms()
+        public ViewResult GetAvailableRooms(DateTime startDate, DateTime endDate, string category)
         {
-            //ReservationRoomViewModel data = new  ReservationRoomViewModel();
-
-            var startDate = new DateTime(2018, 11, 25);
-            var endDate = new DateTime(2018, 11, 30);
-            var category = "Economy";
+            //var startDate = new DateTime(2018, 11, 25);
+            //var endDate = new DateTime(2018, 11, 30);
+            //var category = "Economy";
 
             var rot = _roomRepo.Rooms.Where(r => r.Category == category)
                            .OrderBy(r => r.RoomId);
