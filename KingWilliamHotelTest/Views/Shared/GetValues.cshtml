@@ -17,7 +17,7 @@
 <body class="m-1 p-1">
 
 <h3>Make Reservation</h3>
-    <form id="load">
+    <form id="load" asp-action="GetAvailableRooms" method="get">
     @*<form id="load" asp-controller="Reservation" asp-action="GetValues" method="post">*@
         <p>
             STEP 1: Enter reservation details.  Click button to load the available rooms.

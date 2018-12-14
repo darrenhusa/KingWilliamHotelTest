@@ -39,21 +39,19 @@ namespace KingWilliamHotelTest.Controllers
         }
 
         // GET: /<controller>/
-        //public JsonResult GetAvailableRooms()
         [HttpGet]
-        public JsonResult GetAvailableRooms()
-        //public JsonResult GetAvailableRooms(DateTime startDate, DateTime endDate, string category)
+        public JsonResult GetAvailableRooms(DateTime StartDate, DateTime EndDate, string Category)
         {
-            var startDate = new DateTime(2018, 11, 25);
-            var endDate = new DateTime(2018, 11, 30);
-            var category = "Economy";
+            //var startDate = new DateTime(2018, 11, 25);
+            //var endDate = new DateTime(2018, 11, 30);
+            //var category = "Economy";
 
-            var rot = _roomRepo.Rooms.Where(r => r.Category == category)
+            var rot = _roomRepo.Rooms.Where(r => r.Category == Category)
                            .OrderBy(r => r.RoomId);
 
-            var r1 = _repo.Reservations.Where(r => (r.StartDate <= startDate && r.EndDate >= endDate) ||
-                            (r.StartDate >= startDate && r.StartDate <= endDate && r.EndDate >= endDate) ||
-                            (r.StartDate <= startDate && r.StartDate >= startDate && r.EndDate <= endDate));
+            var r1 = _repo.Reservations.Where(r => (r.StartDate <= StartDate && r.EndDate >= EndDate) ||
+                            (r.StartDate >= StartDate && r.StartDate <= EndDate && r.EndDate >= EndDate) ||
+                            (r.StartDate <= StartDate && r.StartDate >= StartDate && r.EndDate <= EndDate));
 
             //IEnumerable<AvailableRooms> MyData =
             var MyData =
