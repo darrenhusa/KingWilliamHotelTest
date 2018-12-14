@@ -2,7 +2,8 @@
 
     $("form #load").submit(function (e) {
         e.preventDefault();
-        var url = "api/reservationvalues/";
+        var url = "reservation/GetAvailableRooms";
+        //var url = "api/reservationvalues/";
 
         //$.getJSON(url, function() {
         //    //console.log(data);
@@ -13,12 +14,13 @@
         $.ajax({
             url: url,
             contentType: "application/json",
-            method: "GET",
+            method: "POST",
             data: JSON.stringify({
                 RoomNo: this.elements["RoomId"].value
             }),
             success: function (data) {
-                $("#rooms").text(data);
+                //$("#rooms").text(data);
+                $("#rooms").html(data);
 
                 //printRows(data);
             }

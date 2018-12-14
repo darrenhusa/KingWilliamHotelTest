@@ -39,12 +39,14 @@ namespace KingWilliamHotelTest.Controllers
         }
 
         // GET: /<controller>/
-        //public ViewResult GetAvailableRooms()
-        public ViewResult GetAvailableRooms(DateTime startDate, DateTime endDate, string category)
+        //public JsonResult GetAvailableRooms()
+        [HttpGet]
+        public JsonResult GetAvailableRooms()
+        //public JsonResult GetAvailableRooms(DateTime startDate, DateTime endDate, string category)
         {
-            //var startDate = new DateTime(2018, 11, 25);
-            //var endDate = new DateTime(2018, 11, 30);
-            //var category = "Economy";
+            var startDate = new DateTime(2018, 11, 25);
+            var endDate = new DateTime(2018, 11, 30);
+            var category = "Economy";
 
             var rot = _roomRepo.Rooms.Where(r => r.Category == category)
                            .OrderBy(r => r.RoomId);
@@ -64,7 +66,8 @@ namespace KingWilliamHotelTest.Controllers
                     RoomNo = room.RoomId,
                 };
 
-            return View("ListAvailable", MyData);
+            return Json(MyData);
+            //return View("ListAvailable", MyData);
         }
 
         public class AvailableRooms

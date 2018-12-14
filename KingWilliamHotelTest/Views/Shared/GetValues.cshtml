@@ -17,26 +17,25 @@
 <body class="m-1 p-1">
 
 <h3>Make Reservation</h3>
-
-<form id="load">
-    @*<form id="load" asp-controller="Reservation" asp-action="GetAvailableRooms" method="post"><form id="load" asp-controller="Reservation" asp-action="GetAvailableRooms" method="post">*@
-
+    <form id="load">
+    @*<form id="load" asp-controller="Reservation" asp-action="GetValues" method="post">*@
         <p>
             STEP 1: Enter reservation details.  Click button to load the available rooms.
         </p>
         <div class="form-group">
             <!-- Pass customer no in from route? -->
-            <label asp-for="CustomerId">Customer Number</label><input asp-for="CustomerId" class="form-control" />
+            <label asp-for="CustomerId">Customer Number</label>
+            <input asp-for="CustomerId" class="form-control" />
         </div>
 
         <div class="form-group">
-            <label asp-for="StartDate">Start Date</label><input asp-for="StartDate" class="form-control" />
+            <label asp-for="StartDate">Start Date</label>
+            <input asp-for="StartDate" id="StartDate" class="form-control" />
         </div>
         <div class="form-group">
-            <label asp-for="EndDate">End Date</label><input asp-for="EndDate" class="form-control" />
+            <label asp-for="EndDate">End Date</label>
+            <input asp-for="EndDate" id="EndDate" class="form-control" />
         </div>
-
-        @*Select loaded by ViewBag*@
 
         <div class="form-group">
             <label asp-for="Room.Category">Room Type</label>
@@ -55,9 +54,15 @@
     </p>
 
     <form id="save">
-        <select class="form-control" model-for="Room">
+        @*<select class="form-control" model-for="Room">
             <option disabled selected value="">Select a Room</option>
-        </select>
+        </select>*@
+        <div class="form-group">
+            <label asp-for="Room">Room</label>
+            <select asp-for="Room"
+                    name="Room" id="Room"
+                    asp-items="@(new SelectList(string.Empty))"></select>
+        </div>
 
         <div class="text-center">
             <button class="btn btn-primary" type="submit">Save</button>
