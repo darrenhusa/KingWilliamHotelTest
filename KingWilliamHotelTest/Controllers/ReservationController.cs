@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using KingWilliamHotelTest.Data;
 using Microsoft.AspNetCore.Mvc;
@@ -10,11 +11,13 @@ namespace KingWilliamHotelTest.Controllers
     {
         private readonly IReservationRepository _repo;
         private readonly IRoomRepository _roomRepo;
+        private readonly IRoomDesRepository _roomDesRepo;
 
-        public ReservationController(IReservationRepository repository, IRoomRepository roomRepository)
+        public ReservationController(IReservationRepository repository, IRoomRepository roomRepository, IRoomDesRepository roomDesRepository)
         {
             _repo = repository;
             _roomRepo = roomRepository;
+            _roomDesRepo = roomDesRepository;
         }
 
         // GET: /<controller>/
@@ -26,6 +29,12 @@ namespace KingWilliamHotelTest.Controllers
         // GET: /<controller>/
         public ViewResult GetValues()
         {
+            var roomTypes = _roomDesRepo.RoomDess
+                .Select(r => r.Category);
+
+            // Load room types in ViewBag
+            ViewBag.ListOfRoomTypes = roomTypes;
+
             return View();
         }
 
@@ -44,6 +53,7 @@ namespace KingWilliamHotelTest.Controllers
                             (r.StartDate >= startDate && r.StartDate <= endDate && r.EndDate >= endDate) ||
                             (r.StartDate <= startDate && r.StartDate >= startDate && r.EndDate <= endDate));
 
+            //IEnumerable<AvailableRooms> MyData =
             var MyData =
                 from room in rot
                 join room2 in r1 on room.RoomId equals room2.RoomId into gj
