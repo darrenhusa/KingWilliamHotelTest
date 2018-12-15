@@ -1,8 +1,8 @@
-﻿//$(document).ready(function () {
-//    var items = "<option value='0'>Select Room</option>";
-//    $('#Room').html(items);
-//    //$('#room_output').html(items);
-//});
+﻿$(document).ready(function () {
+    var items = "<option value='0'>Select Room</option>";
+    $('#Room').html(items);
+    //$('#room_output').html(items);
+});
 
 function LoadRoomDropDownList(inputData) {
     var url = "/Reservation/GetAvailableRooms";
@@ -15,11 +15,19 @@ function MapRoomsToSelectControl(data) {
     var items = '';
     $("#Room").empty();
     $.each(data,
-        function (i, MyData) {
-            items += "<option value='" + MyData.value + "'>" + MyData.text + "</option>";
+        function (room) {
+            items += "<option value='" + room.value + "'>" + room.text + "</option>";
         });
-    $('#room_output').html(data);
-    //$('#Room').html(items);
+    $('#room_output').html(items);
+    $('#Room').html(items);
+}
+
+function PrintControlValues(input) {
+    $('#room_output').html(input.StartDate);
+    $('#room_output').html(input.EndDate);
+    //$('#room_output').html(input.RoomCategory);
+    //$('#room_output').html(input.Category);
+    //$('#room_output').text("Customer control changed.");
 }
 
 $(document).ready(function () {
@@ -27,24 +35,20 @@ $(document).ready(function () {
     var start_date = "#StartDate";
     var end_date = "#EndDate";
     var category = "#Category";
-    //var formData = {
-    //    StartDate: $(start_date).val(),
-    //    EndDate: $(end_date).val(),
-    //    Category: $(category).val()
-    //}
+    var formData = {
+        StartDate: $(start_date).val(),
+        EndDate: $(end_date).val(),
+        Category: $(category).val()
+    }
 
-    $(customer).change(function () {
+    $("#load_button").submit(PrintControlValues(formData));
 
-        $('#room_output').text($("#CustomerId".val()));
-        $('#room_output').text("Customer control changed.");
-    });
+    //$(start_date).change(function () {
 
-    $(start_date).change(function () {
-
-        $('#room_output').text($("#StartDate".val()));
-        $('#room_output').text("StartDate control changed.");
-    });
-    //$(start_date).change(LoadRoomDropDownList(formData));
-    //$(end_date).change(LoadRoomDropDownList(formData));
-    //$(category).change(LoadRoomDropDownList(formData));
+    //    $('#room_output').text($("#StartDate".val()));
+    //    $('#room_output').text("StartDate control changed.");
+    //});
+    $(start_date).change(LoadRoomDropDownList(formData));
+    $(end_date).change(LoadRoomDropDownList(formData));
+    $(category).change(LoadRoomDropDownList(formData));
 });
