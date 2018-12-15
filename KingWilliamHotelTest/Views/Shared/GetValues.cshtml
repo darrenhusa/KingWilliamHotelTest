@@ -17,8 +17,8 @@
 <body class="m-1 p-1">
 
 <h3>Make Reservation</h3>
-    <form id="load" asp-action="GetAvailableRooms" method="get">
-    @*<form id="load" asp-controller="Reservation" asp-action="GetValues" method="post">*@
+    @*<form id="load" asp-action="GetAvailableRooms" method="get">*@
+    <form asp-controller="Reservation" asp-action="GetValues" method="post">
         <p>
             STEP 1: Enter reservation details.  Click button to load the available rooms.
         </p>
@@ -46,14 +46,12 @@
         </div>
 
     <div class="text-center">
-            <button class="btn btn-primary" type="submit">Load Available Rooms</button>
-        </div>
-    </form>
+        <button id="load" class="btn btn-primary" type="submit">Load Available Rooms</button>
+    </div>
     <p>
         STEP 2 : Select room from drop-down below.  Save or cancel reservation.
     </p>
-
-    <form id="save">
+    
         @*<select class="form-control" model-for="Room">
             <option disabled selected value="">Select a Room</option>
         </select>*@
@@ -64,15 +62,16 @@
                     asp-items="@(new SelectList(string.Empty))"></select>
         </div>
 
+        <!-- Add a table for the available rooms -->
+        <div id="rooms">
+            COPY JSON DATA HERE
+        </div>
+
         <div class="text-center">
             <button class="btn btn-primary" type="submit">Save</button>
             <a asp-action="Index" class="btn btn-secondary">Cancel</a>
         </div>
     </form>
 
-<!-- Add a table for the available rooms -->
-<div id="rooms">
-
-</div>
 </body>
 </html>

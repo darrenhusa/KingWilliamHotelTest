@@ -29,6 +29,7 @@ namespace KingWilliamHotelTest
             services.AddTransient<IReservationRepository, EfReservationRepository>();
             services.AddTransient<IRoomRepository, EfRoomRepository>();
             services.AddTransient<IRoomDesRepository, EfRoomDesRepository>();
+            services.AddTransient<ICustomerRepository, EfCustomerRepository>();
             services.AddMvc();
         }
 

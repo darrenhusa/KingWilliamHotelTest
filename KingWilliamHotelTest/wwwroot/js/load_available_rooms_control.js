@@ -1,30 +1,36 @@
 ﻿$(document).ready(function () {
 
-    $("form #load").submit(function (e) {
+    $("#load").submit(function (e) {
         e.preventDefault();
-        var url = "reservation/GetAvailableRooms";
+        //var url = "reservation/GetAvailableRooms";
+        var message = "From AJAX call!"
         //var url = "api/reservationvalues/";
+
+        alert(message);
 
         //$.getJSON(url, function() {
         //    //console.log(data);
        
-        //  $("#rooms").text(data);
+        //$("#rooms").text("From AJAX call!");
+        //    //$("#rooms").html("From AJAX call!");
+        //    //$("#rooms").html(data);
+        ////$("#rooms").text(data);
         //    });
 
-        $.ajax({
-            url: url,
-            contentType: "application/json",
-            method: "POST",
-            data: JSON.stringify({
-                RoomNo: this.elements["RoomId"].value
-            }),
-            success: function (data) {
-                //$("#rooms").text(data);
-                $("#rooms").html(data);
+        //$.ajax({
+        //    url: url,
+        //    contentType: "application/json",
+        //    method: "GET",
+        //    data: JSON.stringify({
+        //        RoomNo: this.elements["RoomId"].value
+        //    }),
+        //    success: function (data) {
+        //        //$("#rooms").text(data);
+        //        $("#rooms").html(data);
 
                 //printRows(data);
-            }
-        });
+            //}
+        //});
     });
 });
 

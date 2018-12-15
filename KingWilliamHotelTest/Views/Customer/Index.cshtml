@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Customer>
+@{
+    ViewBag.Title = "All Customers";
+    Layout = "_Layout";
+}
+
+<h3>Customers</h3>
+
+<table>
+    <thead>
+        <tr>
+            <th>Customer Id</th>
+            <th>Last name</th>
+            <th>First name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var c in Model)
+        {
+            <tr>
+                <td>@c.CustomerId</td>
+                <td>@c.LastName</td>
+                <td>@c.FirstName</td>
+                @*<td>
+                        <form asp-action="Delete" method="post">
+                            <a asp-action="Edit" asp-route-roomId="@r.RoomId">Edit</a>
+                            <input type="hidden" name="RoomId" value="@r.RoomId"/>
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>*@
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="text-center">
+        <a asp-action="Create" class="btn btn-primary">Add Customer</a>
+        <a asp-controller="Reservation" asp-action="GetValues" class="btn btn-primary">Make Reservation</a>
+</div>
