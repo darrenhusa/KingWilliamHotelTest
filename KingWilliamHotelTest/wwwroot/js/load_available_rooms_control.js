@@ -1,41 +1,50 @@
-﻿$(document).ready(function () {
+﻿//$(document).ready(function () {
+//    var items = "<option value='0'>Select Room</option>";
+//    $('#Room').html(items);
+//    //$('#room_output').html(items);
+//});
 
-    $("#load").submit(function (e) {
-        e.preventDefault();
-        //var url = "reservation/GetAvailableRooms";
-        var message = "From AJAX call!"
-        //var url = "api/reservationvalues/";
+function LoadRoomDropDownList(inputData) {
+    var url = "/Reservation/GetAvailableRooms";
+    //var url = '@Url.Content("~/")' + "";
 
-        alert(message);
-
-        //$.getJSON(url, function() {
-        //    //console.log(data);
-       
-        //$("#rooms").text("From AJAX call!");
-        //    //$("#rooms").html("From AJAX call!");
-        //    //$("#rooms").html(data);
-        ////$("#rooms").text(data);
-        //    });
-
-        //$.ajax({
-        //    url: url,
-        //    contentType: "application/json",
-        //    method: "GET",
-        //    data: JSON.stringify({
-        //        RoomNo: this.elements["RoomId"].value
-        //    }),
-        //    success: function (data) {
-        //        //$("#rooms").text(data);
-        //        $("#rooms").html(data);
-
-                //printRows(data);
-            //}
-        //});
-    });
-});
-
-//var addTableRow = function (reservation) {
-//    $("table tbody").append("<tr><td>" + reservation.reservationId + "</td><td>"
-//        + reservation.clientName + "</td><td>"
-//        + reservation.location + "</td></tr>");
+    $.getJSON(url, inputData, MapRoomsToSelectControl(data));
 }
+
+function MapRoomsToSelectControl(data) {
+    var items = '';
+    $("#Room").empty();
+    $.each(data,
+        function (i, MyData) {
+            items += "<option value='" + MyData.value + "'>" + MyData.text + "</option>";
+        });
+    $('#room_output').html(data);
+    //$('#Room').html(items);
+}
+
+$(document).ready(function () {
+    var customer = "#CustomerId";
+    var start_date = "#StartDate";
+    var end_date = "#EndDate";
+    var category = "#Category";
+    //var formData = {
+    //    StartDate: $(start_date).val(),
+    //    EndDate: $(end_date).val(),
+    //    Category: $(category).val()
+    //}
+
+    $(customer).change(function () {
+
+        $('#room_output').text($("#CustomerId".val()));
+        $('#room_output').text("Customer control changed.");
+    });
+
+    $(start_date).change(function () {
+
+        $('#room_output').text($("#StartDate".val()));
+        $('#room_output').text("StartDate control changed.");
+    });
+    //$(start_date).change(LoadRoomDropDownList(formData));
+    //$(end_date).change(LoadRoomDropDownList(formData));
+    //$(category).change(LoadRoomDropDownList(formData));
+});

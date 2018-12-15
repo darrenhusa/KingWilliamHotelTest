@@ -4,74 +4,74 @@
     ViewBag.Title = "Make Reservation";
     Layout = null;
 }
+@{
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>@ViewBag.Title</title>
+        <link asp-href-include="lib/bootstrap/dist/css/*.min.css" rel="stylesheet" />
+        @*<script src="lib/jquery/dist/jquery.js"></script>*@
+        <script src="/lib/jquery/dist/jquery.min.js"></script>
+        <script src="js/load_available_rooms_control.js"></script>     
+    </head>
+    <body class="m-1 p-1">
+        <h3>Make Reservation</h3>
+        @*<form id="load" asp-action="GetAvailableRooms" method="get">*@
+        <form asp-controller="Reservation" asp-action="GetValues" method="post">
+            <p>
+                STEP 1: Enter reservation details.  Click button to load the available rooms.
+            </p>
+            <div class="form-group">
+                <!-- Pass customer no in from route? -->
+                <label asp-for="CustomerId">Customer Number</label>
+                <input asp-for="CustomerId" class="form-control" />
+            </div>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
-    <link asp-href-include="lib/bootstrap/dist/css/*.min.css" rel="stylesheet" />
-    <script src="lib/jquery/dist/jquery.js"></script>
-    <script src="js/load_available_rooms_control.js"></script>
-</head>
-<body class="m-1 p-1">
+            <div class="form-group">
+                <label asp-for="StartDate">Start Date</label>
+                <input asp-for="StartDate" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="EndDate">End Date</label>
+                <input asp-for="EndDate" class="form-control" />
+            </div>
 
-<h3>Make Reservation</h3>
-    @*<form id="load" asp-action="GetAvailableRooms" method="get">*@
-    <form asp-controller="Reservation" asp-action="GetValues" method="post">
-        <p>
-            STEP 1: Enter reservation details.  Click button to load the available rooms.
-        </p>
-        <div class="form-group">
-            <!-- Pass customer no in from route? -->
-            <label asp-for="CustomerId">Customer Number</label>
-            <input asp-for="CustomerId" class="form-control" />
-        </div>
+            <div class="form-group">
+                <label asp-for="Room.Category">Room Type</label>
+                <select asp-for="Room.Category"
+                        name="Category"
+                        asp-items="@(new SelectList(@ViewBag.ListOfRoomTypes))"></select>
+            </div>
 
-        <div class="form-group">
-            <label asp-for="StartDate">Start Date</label>
-            <input asp-for="StartDate" id="StartDate" class="form-control" />
-        </div>
-        <div class="form-group">
-            <label asp-for="EndDate">End Date</label>
-            <input asp-for="EndDate" id="EndDate" class="form-control" />
-        </div>
+            @*<div class="text-center">
+                <button id="load" class="btn btn-primary" type="submit">Load Available Rooms</button>
+            </div>*@
+            <p>
+                STEP 2 : Select room from drop-down below.  Save or cancel reservation.
+            </p>
 
-        <div class="form-group">
-            <label asp-for="Room.Category">Room Type</label>
-            <select asp-for="Room.Category" 
-                    name="Category" id="Category"
-                    asp-items="@(new SelectList(@ViewBag.ListOfRoomTypes))">
-            </select>
-        </div>
+            @*<select class="form-control" model-for="Room">
+                    <option disabled selected value="">Select a Room</option>
+                </select>*@
+            <div class="form-group">
+                <label asp-for="Room">Room</label>
+                <select asp-for="Room"
+                        name="Room" id="Room"
+                        asp-items="@(new SelectList(string.Empty))"></select>
+            </div>
 
-    <div class="text-center">
-        <button id="load" class="btn btn-primary" type="submit">Load Available Rooms</button>
-    </div>
-    <p>
-        STEP 2 : Select room from drop-down below.  Save or cancel reservation.
-    </p>
-    
-        @*<select class="form-control" model-for="Room">
-            <option disabled selected value="">Select a Room</option>
-        </select>*@
-        <div class="form-group">
-            <label asp-for="Room">Room</label>
-            <select asp-for="Room"
-                    name="Room" id="Room"
-                    asp-items="@(new SelectList(string.Empty))"></select>
-        </div>
+            <!-- Add a table for the available rooms -->
+            <div id="room_output">
+                COPY JSON DATA HERE
+            </div>
 
-        <!-- Add a table for the available rooms -->
-        <div id="rooms">
-            COPY JSON DATA HERE
-        </div>
+            <div class="text-center">
+                <button class="btn btn-primary" type="submit">Save</button>
+                <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
 
-        <div class="text-center">
-            <button class="btn btn-primary" type="submit">Save</button>
-            <a asp-action="Index" class="btn btn-secondary">Cancel</a>
-        </div>
-    </form>
-
-</body>
+    </body>
 </html>
+}
