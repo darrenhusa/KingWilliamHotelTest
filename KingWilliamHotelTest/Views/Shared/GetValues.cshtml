@@ -44,16 +44,16 @@
                         asp-items="@(new SelectList(@ViewBag.ListOfRoomTypes))"></select>
             </div>
 
-            <div class="text-center">
+            @*<div class="text-center">
                 <button id="load_button" class="btn btn-primary" type="submit">Load Available Rooms</button>
-            </div>
+            </div>*@
             <p>
                 STEP 2 : Select room from drop-down below.  Save or cancel reservation.
             </p>
 
             @*<select class="form-control" model-for="Room">
-                    <option disabled selected value="">Select a Room</option>
-                </select>*@
+            <option disabled selected value="">Select a Room</option>
+        </select>*@
             <div class="form-group">
                 <label asp-for="Room">Room</label>
                 <select asp-for="Room"
@@ -62,9 +62,13 @@
             </div>
 
             <!-- Add a table for the available rooms -->
-            <div id="room_output">
+            <table id="room_output">
+                <tbody>
+                </tbody>
+            </table>
+            @*<div id="room_output">
                 COPY JSON DATA HERE
-            </div>
+            </div>*@
 
             <div class="text-center">
                 <button class="btn btn-primary" type="submit">Save</button>
