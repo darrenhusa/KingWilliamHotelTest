@@ -38,6 +38,21 @@ namespace KingWilliamHotelTest.Controllers
             return View();
         }
 
+        // POST: /<controller>/
+        // TO DO - work on code so that clicking SAVE on make reservation writes the record to the database!!!
+
+        [HttpPost]
+        public IActionResult GetValues(Reservation reservation)
+        {
+            //var roomTypes = _roomDesRepo.RoomDess
+            //    .Select(r => r.Category);
+
+            //// Load room types in ViewBag
+            //ViewBag.ListOfRoomTypes = roomTypes;
+
+            return View();
+        }
+
         // GET: /<controller>/
         [HttpGet]
         public JsonResult GetAvailableRooms(DateTime StartDate, DateTime EndDate, string Category)
