@@ -1,0 +1,35 @@
+﻿<html>
+<head>
+    <title>The jQuery Example</title>
+    <script type="text/javascript"
+            src="/lib/jquery/dist/jquery.min.js"></script>
+    </script>
+    <script type="text/javascript" language="javascript">
+        $(document).ready(function () {
+
+            $("#driver").click(function (e) {
+                e.preventDefault();
+                var url = '/api/reservationvalues';
+                //alert("click fired!");
+                $.getJSON(url, function (data) {
+                    $('#stage').empty();
+                    for (var i = 0; i < data.length; i++) {
+                        $('#stage').append('<tr><td>' + data[i].roomNo + '</td></tr>');
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+	
+<body>
+    <p>Click on the button to load json data from /api/reservationvalues via ajax</p>
+
+<table id="stage">
+    <tbody>
+    </tbody>
+</table>
+
+    <input type="button" id="driver" value="Load Data" />
+</body>
+</html>

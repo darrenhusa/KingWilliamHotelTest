@@ -17,7 +17,7 @@ namespace KingWilliamHotelTest.Controllers
         //}
 
         // GET: /<controller>/
-        public ViewResult GetValues() => View();
+        public ViewResult AjaxTest() => View();
 
     }
 }
