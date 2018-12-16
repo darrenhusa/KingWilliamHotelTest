@@ -1,10 +1,6 @@
-﻿//$(document).ready(function () {
-//    var items = "<option value='0'>Select Room</option>";
-//    $('#Room').html(items);
-//    //$('#room_output').html(items);
-//});
-
-$(document).ready(function () {
+﻿$(document).ready(function () {
+    var items = "<option value='0'>Select Room</option>";
+    $('#Room').html(items);
     //alert("ready fired!");
     //var1 = $("#StartDate").val();
     //if (!var1) {
