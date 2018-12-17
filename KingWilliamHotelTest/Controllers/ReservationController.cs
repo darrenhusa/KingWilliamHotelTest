@@ -44,12 +44,7 @@ namespace KingWilliamHotelTest.Controllers
         [HttpPost]
         public IActionResult GetValues(Reservation reservation)
         {
-            //var roomTypes = _roomDesRepo.RoomDess
-            //    .Select(r => r.Category);
-
-            //// Load room types in ViewBag
-            //ViewBag.ListOfRoomTypes = roomTypes;
-
+            
             return View();
         }
 
@@ -108,7 +103,6 @@ namespace KingWilliamHotelTest.Controllers
             {
                 // there is something wrong with the data vales
                 return View(reservation);
-
             }
            
         }
