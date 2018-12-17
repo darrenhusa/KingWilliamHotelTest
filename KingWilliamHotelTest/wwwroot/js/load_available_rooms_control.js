@@ -10,24 +10,10 @@
     // syntax with named function - works!
     $("#Room_Category").change(ReloadData);
 
-    // syntax with anonymous function - works!
-    //$("#Room_Category").change(function () {
-    //    var formData = CaptureControlValues();
-    //    if (formData.StartDate && formData.EndDate && formData.Category) {
-    //        //alert("all controls have non-empty values!");
-    //        LoadRoomDropDownList(formData);
-    //    }
-    //});
 });
 
 function ReloadData() {
     var formData = CaptureControlValues();
-    //PrintControlValues(formData);
-    //LoadRoomDropDownList(formData);
-    //CallApiFunction();
-    //alert("Room category changed!");
-    //alert("Room category changed to " + formData.category);
-    //alert("GET JSON DATA!!!");
     if (formData.StartDate && formData.EndDate && formData.Category) {
         //alert("all controls have non-empty values!");
         LoadRoomDropDownList(formData);
@@ -50,34 +36,19 @@ function CaptureControlValues() {
     return formData;
 }
 
+// syntax with named function - works!
 function LoadRoomDropDownList(inputData) {
     var url = "/Reservation/GetAvailableRooms";
     //alert("inside Load Room drop down.");
-    $.getJSON(url, inputData, function (data) {
-        $('#Room').empty();
-        var items = '';
-        for (var i = 0; i < data.length; i++) {
-            room = data[i].roomNo;
-            //$('#Room').append('<tr><td>' + data[i].roomNo + '</td></tr>');
-            items += "<option value='" + room + "'>" + room + "</option>";
-        }
-        $('#Room').html(items);
-    });
+    $.getJSON(url, inputData, MapRoomsToSelectControl);
 }
 
-//function LoadRoomDropDownList(inputData) {
-//    var url = "/Reservation/GetAvailableRooms";
-//    //alert("inside Load Room drop down.");
-//    $.getJSON(url, inputData, MapRoomsToSelectControl($, data));
-//}
-
-//function MapRoomsToSelectControl(data) {
-//    $('#Room').empty();
-//    var items = '';
-//    for (var i = 0; i < data.length; i++) {
-//        room = data[i].roomNo;
-//        //$('#Room').append('<tr><td>' + data[i].roomNo + '</td></tr>');
-//        items += "<option value='" + room + "'>" + room + "</option>";
-//    }
-//    $('#Room').html(items);
-//}
+function MapRoomsToSelectControl(data) {
+    $('#Room').empty();
+    var items = '';
+    for (var i = 0; i < data.length; i++) {
+        room = data[i].roomNo;
+        items += "<option value='" + room + "'>" + room + "</option>";
+    }
+    $('#Room').html(items);
+}
