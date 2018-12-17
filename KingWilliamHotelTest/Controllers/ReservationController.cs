@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using KingWilliamHotelTest.Data;
 using Microsoft.AspNetCore.Mvc;
@@ -42,10 +41,19 @@ namespace KingWilliamHotelTest.Controllers
         // TO DO - work on code so that clicking SAVE on make reservation writes the record to the database!!!
 
         [HttpPost]
-        public IActionResult GetValues(Reservation reservation)
+        public IActionResult GetValues(DateTime StartDate, DateTime EndDate, int CustomerId, int Room)
         {
-            
-            return View();
+            var newReservation = new Reservation
+            {
+                RoomId = Room,
+                StartDate = StartDate,
+                EndDate = EndDate,
+                Amount = 0.0,
+                CustomerId = CustomerId
+            };
+            _repo.SaveReservation(newReservation);
+            TempData["message"] = $"Reservation {newReservation.ReservationId} has been saved.";
+            return RedirectToAction("Index");
         }
 
         // GET: /<controller>/
