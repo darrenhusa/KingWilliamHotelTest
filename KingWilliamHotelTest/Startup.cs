@@ -37,9 +37,13 @@ namespace KingWilliamHotelTest
                 //routes.MapRoute(
                 //    name: "default",
                 //    template: "{controller=Reservation}/{action=GetValues}/{id?}");
+                //routes.MapRoute(
+                //    name: "default",
+                //    template: "{controller=Reservation}/{action=Index}/{id?}");
+
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Reservation}/{action=Index}/{id?}");
+                    template: "{controller=Customer}/{action=Index}/{id?}");
 
                 routes.MapRoute(
                     name: null,

@@ -46,17 +46,22 @@
                         name="Category"
                         asp-items="@(new SelectList(@ViewBag.ListOfRoomTypes))"></select>
             </div>
+            <div id="category_price">
+                (Insert price here!)
+            </div>
             <p>
                 STEP 2 : Select room from drop-down below.  Save or cancel reservation.
             </p>
 
             <div class="form-group">
                 <label asp-for="Room">Room</label>
-                <select asp-for="Room" id="Room"
+                <select asp-for="Room"
                         name="Room"
                         asp-items="@(new SelectList(string.Empty))"></select>
             </div>
-
+            <div id="room_availability">
+                (Insert room availability here!)
+            </div>
             <div class="text-center">
                 <button class="btn btn-primary" type="submit">Save</button>
                 <a asp-action="Index" class="btn btn-secondary">Cancel</a>

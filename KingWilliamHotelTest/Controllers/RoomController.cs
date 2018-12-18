@@ -24,6 +24,25 @@ namespace KingWilliamHotelTest.Controllers
         }
 
         // GET: /<controller>/
+        [HttpGet]
+        public JsonResult CheckRoomAvailability(int room)
+        {
+            bool roomAvailability = false;
+
+            var currentRoom = _repo.Rooms
+                                        .Where(r => r.RoomId == room)
+                                        .Select(r => new {r.NeedsCleaning, r.Unavailable })
+                .FirstOrDefault();
+
+            if (currentRoom != null)
+            {
+                roomAvailability = (!currentRoom.NeedsCleaning && !currentRoom.Unavailable);
+            }
+
+            return Json(roomAvailability);
+        }
+
+        // GET: /<controller>/
         //public ViewResult GetRoomCategories()
         //{
         //    ViewBag.Categories = new SelectList(_repo.Rooms)
