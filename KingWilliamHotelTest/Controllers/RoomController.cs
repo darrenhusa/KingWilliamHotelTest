@@ -36,7 +36,8 @@ namespace KingWilliamHotelTest.Controllers
 
             if (currentRoom != null)
             {
-                roomAvailability = !(currentRoom.NeedsCleaning || currentRoom.Unavailable);
+                roomAvailability = !currentRoom.NeedsCleaning;
+                //roomAvailability = !(currentRoom.NeedsCleaning || currentRoom.Unavailable);
             }
 
             return Json(roomAvailability);

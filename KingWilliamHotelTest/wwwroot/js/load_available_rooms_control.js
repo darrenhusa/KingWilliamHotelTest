@@ -45,7 +45,7 @@ function LoadRoomDropDownList(inputData) {
 
 function MapRoomsToSelectControl(data) {
     $('#Room').empty();
-    var items = '';
+    var items = '<option>Select Room</option>';
     for (var i = 0; i < data.length; i++) {
         room = data[i].roomNo;
         items += "<option value='" + room + "'>" + room + "</option>";
