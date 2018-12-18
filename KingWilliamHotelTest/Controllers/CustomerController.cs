@@ -1,9 +1,7 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using KingWilliamHotelTest.Data;
 using Microsoft.AspNetCore.Mvc;
-using KingWilliamHotelTest.Models;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 
 namespace KingWilliamHotelTest.Controllers
 {
@@ -17,9 +15,20 @@ namespace KingWilliamHotelTest.Controllers
         }
 
         // GET: /<controller>/
-        public ViewResult Index()
+        public ViewResult Index(string searchString)
         {
-            return View(_repo.Customers);
+            ViewData["CurrentFilter"] = searchString;
+
+            var customers = from c in _repo.Customers
+                select c;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                customers = customers.Where(c => c.LastName.Contains(searchString)
+                                               || c.FirstName.Contains(searchString));
+            }
+
+            return View(customers);
         }
        
     }

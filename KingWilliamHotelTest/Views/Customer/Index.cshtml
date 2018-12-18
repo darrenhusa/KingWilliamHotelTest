@@ -6,6 +6,16 @@
 
 <h3>Customers</h3>
 
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Find by name: <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
+            <input type="submit" value="Search" class="btn btn-default" /> |
+            <a asp-action="Index">Back to Full List</a>
+        </p>
+    </div>
+</form>
+
 <table>
     <thead>
         <tr>
@@ -33,6 +43,6 @@
     </tbody>
 </table>
 <div class="text-center">
-        <a asp-action="Create" class="btn btn-primary">Add Customer</a>
-        <a asp-controller="Reservation" asp-action="GetValues" class="btn btn-primary">Make Reservation</a>
+    <a asp-action="Create" class="btn btn-primary">Add Customer</a>
+    <a asp-controller="Reservation" asp-action="GetValues" class="btn btn-primary">Make Reservation</a>
 </div>
