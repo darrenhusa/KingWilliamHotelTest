@@ -23,7 +23,7 @@ namespace KingWilliamHotelTest.Controllers
             return View(_repo.Rooms);
         }
 
-        // GET: /<controller>/
+        // GET: /<controller>/CheckRoomAvailability/100
         [HttpGet]
         public JsonResult CheckRoomAvailability(int room)
         {
@@ -36,7 +36,7 @@ namespace KingWilliamHotelTest.Controllers
 
             if (currentRoom != null)
             {
-                roomAvailability = (!currentRoom.NeedsCleaning && !currentRoom.Unavailable);
+                roomAvailability = !(currentRoom.NeedsCleaning || currentRoom.Unavailable);
             }
 
             return Json(roomAvailability);
