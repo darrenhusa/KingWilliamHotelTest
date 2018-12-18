@@ -28,19 +28,16 @@
                 var currentRoom = $("#Room").val();
 
                 var url = "/Room/CheckRoomAvailability?room=" + currentRoom;
-                //alert("inside GetRoomAvailability.");
+                alert("inside GetRoomAvailability.");
                 $.getJSON(url, currentRoom, BuildRoomAvailabilityMessage);
             }
 
             function BuildRoomAvailabilityMessage(data) {
                 $('#RoomAvailability').empty();
                 var roomAvailability = data.roomAvailability;
-                var result;
+                var result = "";
                 if (!roomAvailability) {
                     result = "<p>Needs Cleaning.</p>";
-                }
-                else {
-                    result = "";
                 }
                 $('#RoomAvailability').html(result);
             }
